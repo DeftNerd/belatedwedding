@@ -38,6 +38,11 @@ class Guest extends Model
         return $this->belongsTo('App\Invitation');
     }
 
+    public function meal()
+    {
+        return $this->belongsTo('App\Meal');
+    }
+
     public function gifts()
     {
         return $this->belongsToMany('App\Gift');

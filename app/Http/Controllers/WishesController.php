@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Gift;
+use App\Wish;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
 
-class GiftsController extends Controller
+class WishesController extends Controller
 {
 
     /**
@@ -22,7 +22,7 @@ class GiftsController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -30,9 +30,9 @@ class GiftsController extends Controller
      */
     public function index()
     {
-        $gifts = Gift::paginate(15);
+        $wishes = Wish::paginate(15);
 
-        return view('gifts.index', compact('gifts'));
+        return view('wishes.index', compact('wishes'));
     }
 
     /**
@@ -42,7 +42,7 @@ class GiftsController extends Controller
      */
     public function create()
     {
-        return view('gifts.create');
+        return view('wishes.create');
     }
 
     /**
@@ -52,13 +52,12 @@ class GiftsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['thanked_at' => 'nullable', ]);
+        
+        Wish::create($request->all());
 
-        Gift::create($request->all());
+        Session::flash('flash_message', 'Wish added!');
 
-        Session::flash('flash_message', 'Gift added!');
-
-        return redirect('gifts');
+        return redirect('wishes');
     }
 
     /**
@@ -70,9 +69,9 @@ class GiftsController extends Controller
      */
     public function show($id)
     {
-        $gift = Gift::findOrFail($id);
+        $wish = Wish::findOrFail($id);
 
-        return view('gifts.show', compact('gift'));
+        return view('wishes.show', compact('wish'));
     }
 
     /**
@@ -84,9 +83,9 @@ class GiftsController extends Controller
      */
     public function edit($id)
     {
-        $gift = Gift::findOrFail($id);
+        $wish = Wish::findOrFail($id);
 
-        return view('gifts.edit', compact('gift'));
+        return view('wishes.edit', compact('wish'));
     }
 
     /**
@@ -98,14 +97,13 @@ class GiftsController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['thanked_at' => 'nullable', ]);
+        
+        $wish = Wish::findOrFail($id);
+        $wish->update($request->all());
 
-        $gift = Gift::findOrFail($id);
-        $gift->update($request->all());
+        Session::flash('flash_message', 'Wish updated!');
 
-        Session::flash('flash_message', 'Gift updated!');
-
-        return redirect('gifts');
+        return redirect('wishes');
     }
 
     /**
@@ -117,10 +115,10 @@ class GiftsController extends Controller
      */
     public function destroy($id)
     {
-        Gift::destroy($id);
+        Wish::destroy($id);
 
-        Session::flash('flash_message', 'Gift deleted!');
+        Session::flash('flash_message', 'Wish deleted!');
 
-        return redirect('gifts');
+        return redirect('wishes');
     }
 }

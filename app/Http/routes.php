@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('/invite/{code}', 'HomeController@index');
 
 Route::resource('gifts', 'GiftsController');
 Route::resource('guests', 'GuestsController');
 Route::resource('invitations', 'InvitationsController');
 Route::resource('meals', 'MealsController');
 Route::resource('users', 'UsersController');
+Route::resource('wishes', 'WishesController');

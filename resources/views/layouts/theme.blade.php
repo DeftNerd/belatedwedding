@@ -40,7 +40,7 @@
                     <div class="row ">
                         <div class="col-xs-12 padding-class">
                             <div class="header-cont clearfix">
-                            <a href="index.html" class="logo"> <img src="assets/images/logo.png" alt=""/> <i class="fa fa-heart"> </i> </a>
+                            <a href="/" class="logo"><i class="fa fa-heart fa-4x"></i></a>
                                 <nav>
                                     <button class=" home-menu" type="button">
                                         <span class="icon-bar"> </span>
@@ -50,45 +50,22 @@
 
                                     <ul class="navigation clearfix">
                                         <li class="active">
-                                            <a href="index.html">HOME</a>
+                                            <a href="/">HOME</a>
                                         </li>
                                         <li>
-                                            <a href="index.html#couple">COUPLE</a>
+                                            <a href="#couple">COUPLE</a>
                                         </li>
                                         <li>
-                                            <a href="index.html#our-story">OUR STORY</a>
+                                            <a href="#our-story">OUR STORY</a>
                                         </li>
                                         <li>
-                                            <a href="index.html#event">EVENTS</a>
+                                            <a href="#event">EVENTS</a>
                                         </li>
                                         <li>
-                                            <a href="index.html#people-blog">PEOPLE</a>
+                                            <a href="#people-blog">PEOPLE</a>
                                         </li>
                                         <li>
-                                            <a href="index.html#photos">PHOTOS</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog.html">BLOG</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">pages</a>
-                                            <ul class="drop-down">
-                                                <li>
-                                                    <a href="event.html">Event</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog.html">Blog</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-detail-page.html">Blog-Detail</a>
-                                                </li>
-                                                <li>
-                                                    <a href="travel-info.html">Travel-Info</a>
-                                                </li>
-                                                <li>
-                                                    <a href="404-page.html">404</a>
-                                                </li>
-                                            </ul>
+                                            <a href="#photos">PHOTOS</a>
                                         </li>
                                     </ul>
 
@@ -154,7 +131,7 @@
         <script type="text/javascript" src="/assets/js/app.js"></script>
 
         <!-- revolution slider Js -->
-        <script type="text/javascript" src="/assets/js//jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="/assets/js/jquery.themepunch.revolution.min.js"></script>
         <script type="text/javascript" src="/assets/js/jquery.revolution.js"></script>
         <script type="text/javascript" src="/assets/extensions/revolution.extension.video.min.js"></script>
