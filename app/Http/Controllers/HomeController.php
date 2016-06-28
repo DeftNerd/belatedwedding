@@ -42,7 +42,7 @@ class HomeController extends Controller
     }
 
     public function update($code, Request $request) {
-        //dd($request->all());
+        dd($request->all());
         $invitation = Invitation::where('code', $code)->first();
         $invitation->rsvp_at = Carbon::now();
         $invitation->save();
@@ -52,7 +52,9 @@ class HomeController extends Controller
             $guest->name = $value->name;
             $guest->email = $value->email;
             $guest->meal_id = $value->meal_id;
-            $guest->is_attending = $invitation->is_attending;
+            if ($invitation->is_attending == TRUE) {
+                $guest->is_attending = TRUE;
+            }
             $guest->save();
         }
 
@@ -61,8 +63,15 @@ class HomeController extends Controller
             $guest->name = $value->name;
             $guest->email = $value->email;
             $guest->meal_id = $value->meal_id;
-            $guest->is_attending = $invitation->is_attending;
+            if ($invitation->is_attending == TRUE) {
+                $guest->is_attending = TRUE;
+            }
             $guest->save();
+        }
+
+        if (!empty($request->wish)) {
+            $wish = Wish::firstOrNew(['invitation_id' => $invitation->id]);
+            Wish::
         }
         
     }

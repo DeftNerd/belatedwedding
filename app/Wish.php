@@ -25,5 +25,5 @@ class Wish extends Model
      *
      * @var array
      */
-    protected $fillable = ['guest_id', 'from', 'message'];
+    protected $fillable = ['invitation_id', 'from', 'message'];
 }

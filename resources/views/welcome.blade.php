@@ -260,10 +260,8 @@
                                     <h3>RSVP</h3>
                                     @if (!empty($invitation->rsvp_at))
                                         <span class="plz-cls">You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</span>
-                                        {!! Form::select("is_attending", [0 => 'I can\'t attend', 1 => 'I will attend'], $invitation->is_attending, ['placeholder' => 'Can you make it?']) !!}
                                     @else
                                         <span class="plz-cls">Please RSVP as soon as possible! </span>
-                                        {!! Form::select("is_attending", [0 => 'I can\'t attend', 1 => 'I will attend'], $invitation->is_attending, ['placeholder' => 'Can you make it?']) !!}
 
                                         <span class="plz-cls">You can invite up to {{ $invitation->guests_allowed }} guests. Leave the names blank if you don't need that many guests. Include an email address to receive updates about the wedding and links to the photos afterwards.</span>
                                     @endif
@@ -302,7 +300,8 @@
                                         @endfor
                                         <span class="notes">If you could wish anything for the couple, what would it be?</span><br />
                                         <textarea name="wish"></textarea>
-                                        <button>Submit</button>
+                                        <button name="is_attending" value="true">We can attend</button>
+                                        <button name="is_attending" value="false">We can't make it</button>
                                     </form>
                                 </div>
                             </div>
