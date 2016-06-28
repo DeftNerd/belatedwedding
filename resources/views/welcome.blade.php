@@ -241,7 +241,6 @@
             <div id="content">
 
             @if (isset($invitation))
-                {{ dump($invitation) }}
                 <!--Attending-section-start-->
                 <section class="attending-class">
                     <div class="container">
@@ -256,80 +255,54 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-12 col-sm-10 col-sm-push-1">
-                                <div class="rsvp-wrapper" data-ng-controller="rsvp2Ctrl">
+                                <div class="rsvp-wrapper">
+                                    <form name="form" method="post" action="/invite/{{$invitation->code}}">
                                     <h3>RSVP</h3>
                                     @if (!empty($invitation->rsvp_at))
-                                    <span class="plz-cls">You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</span>
+                                        <span class="plz-cls">You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</span>
+                                        {!! Form::select("is_attending", [0 => 'I can\'t attend', 1 => 'I will attend'], $invitation->is_attending, ['placeholder' => 'Can you make it?']) !!}
                                     @else
-                                    <span class="plz-cls">Please RSVP as soon as possible!</span>
+                                        <span class="plz-cls">Please RSVP as soon as possible! </span>
+                                        {!! Form::select("is_attending", [0 => 'I can\'t attend', 1 => 'I will attend'], $invitation->is_attending, ['placeholder' => 'Can you make it?']) !!}
+
+                                        <span class="plz-cls">You can invite up to {{ $invitation->guests_allowed }} guests. Leave the names blank if you don't need that many guests. Include an email address to receive updates about the wedding and links to the photos afterwards.</span>
                                     @endif
-                                    <form name="form" novalidate>
+                                    <div class="inner-wrapper">
+
+                                        {{ csrf_field() }}
                                         @foreach ($invitation->guests as $key => $guest)
                                         <div class="row">
-                                            <div class="col-md-3"><h3>Guest {{ $key + 1 }}</h3></div>
-                                            <div class="col-md-4"><input type="text" id="name" name="name" placeholder="Name" value="{{ $guest->name }}" class="form-control"></div>
-                                            <div class="col-md-5"><input type="text" id="email" name="email" placeholder="Email" value="{{ $guest->email }}" class="form-control"></div>
+                                            <div class="col-md-2"><h4>Guest {{ $key + 1 }}</h4></div>
+                                            <div class="col-md-3 input-box">
+                                                <input type="text" name="guest[{{$guest->id}}][name]" placeholder="Name" value="{{ $guest->name }}" class="form-control">
+                                            </div>
+                                            <div class="col-md-4 input-box">
+                                                <input type="text" name="guest[{{$guest->id}}][email]" placeholder="Email" value="{{ $guest->email }}" class="form-control">
+                                            </div>
+                                            <div class="col-md-3 input-box">
+                                                {!! Form::select("guest[$guest->id][meal_id]", $meals, $guest->meal_id, ['placeholder' => 'Choose a Dinner']) !!}
+                                            </div>
                                         </div>
                                         @endforeach
                                         @for($i = $invitation->guests->count() + 1; $i <= $invitation->guests_allowed; $i++ ) 
                                         <div class="row">
-                                            <div class="col-md-3"><h3>Guest {{ $i }}</h3></div>
-                                            <div class="col-md-4"><input type="text" id="newname[{{$i}}]" name="newname[{{$i}}]" placeholder="Name" class="form-control"></div>
-                                            <div class="col-md-5"><input type="text" id="newemail[{{$i}}]" name="newemail[{{$i}}]" placeholder="Email" class="form-control"></div>
+                                            <div class="col-md-2">
+                                                <h4>Guest {{ $i }}</h4>
+                                            </div>
+                                            <div class="col-md-3 input-box">
+                                                <input type="text" name="new[{{$i}}][name]" placeholder="Name" class="form-control">
+                                            </div>
+                                            <div class="col-md-4 input-box">
+                                                <input type="text" name="new[{{$i}}][email]" placeholder="Email" class="form-control">
+                                            </div>
+                                            <div class="col-md-3 input-box">
+                                                {!! Form::select("new[$i][meal_id]", $meals, NULL, ['placeholder' => 'Choose a Dinner']) !!}
+                                            </div>
                                         </div>
                                         @endfor
-                                        <div class="inner-wrapper">
-                                                <div class="input-box">
-                                                    <input type="text" id="name" name="name" placeholder="Name">
-
-                                                <div data-ng-show="form.fname.$invalid && submit ">
-                                                    <span data-ng-show="form.fname.$invalid && submit" class="error-msg">This is not a valid name.</span>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="input-box">
-                                                <input id="mail" type="email" name="email" placeholder="Email" data-ng-model="user.email" required="" >
-                                                <div data-ng-show="form.email.$invalid && submit ">
-                                                    <span data-ng-show="form.email.$invalid &&  submit" class="error-msg">This is not a valid email.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="inner-wrapper">
-                                            <div class="input-box">
-                                                <input type="text" placeholder="No Of Guest" name="guest" data-ng-model="user.guest" data-ng-pattern="/^(\d)+$/" required="">
-
-                                                <div data-ng-show="form.guest.$invalid && submit">
-                                                    <span data-ng-show="form.guest.$invalid &&  submit" class="error-msg">This is not a valid number.</span>
-                                                </div>
-
-                                            </div>
-                                            <div class="input-box">
-                                                <input type="text" name="Meal" placeholder="Meal Choice" data-ng-model="user.meal" required="" data-ng-pattern="/^([a-zA-Z0-9 _-]+)$/">
-
-                                                <div data-ng-show="form.Meal.$invalid && submit">
-
-                                                    <span data-ng-show="form.Meal.$invalid &&  submit" class="error-msg">This is not a valid meal.</span>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <textarea placeholder="Notes" name="note" data-ng-model="user.notes" required = ''>
-
-
-                                        </textarea>
-                                        <div data-ng-show="submit &&  form.notes.$invalid">
-                                            <span data-ng-show="submit && form.note.$error.required" class="error-msg">Please enter</span>
-
-                                        </div>
-
-                                        <div id="contactSuccess" class="showmsg">
-                                            <span>Hey! Thanks for reaching out. I will get back to you soon</span>
-                                        </div>
-                                        <button data-ng-click="update(form.$valid)">
-                                            Submit
-                                        </button>
+                                        <span class="notes">If you could wish anything for the couple, what would it be?</span><br />
+                                        <textarea name="wish"></textarea>
+                                        <button>Submit</button>
                                     </form>
                                 </div>
                             </div>

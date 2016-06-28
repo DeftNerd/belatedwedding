@@ -54,24 +54,8 @@
                     <td>{{ $guest->name }}</td>
                   </tr>
                   <tr>
-                    <th>Phone</th>
-                    <td>{{ $guest->phone or 'Unknown' }}</td>
-                  </tr>
-                  <tr>
                     <th>Email</th>
                     <td>{{ $guest->email or 'Unknown' }}</td>
-                  </tr>
-                  <tr>
-                    <th>Is a child?</th>
-                    <td>@if ($guest->is_child == TRUE) Yes @elseif ($guest->is_child == NULL) Unknown @else No @endif</td>
-                  </tr>
-                  <tr>
-                    <th>Attending Ceremony?</th>
-                    <td>@if ($guest->is_attending_ceremony == TRUE) Yes @elseif ($guest->is_attending_ceremony == NULL) Unknown @else No @endif</td>
-                  </tr>
-                  <tr>
-                    <th>Attending Party?</th>
-                    <td>@if ($guest->is_attending_reception == TRUE) Yes @elseif ($guest->is_attending_reception == NULL) Unknown @else No @endif</td>
                   </tr>
               </tbody>
           </table>

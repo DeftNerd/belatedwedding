@@ -15,6 +15,7 @@ Route::auth();
 
 Route::get('/', 'HomeController@index');
 Route::get('/invite/{code}', 'HomeController@index');
+Route::post('/invite/{code}', 'HomeController@update');
 
 Route::resource('gifts', 'GiftsController');
 Route::resource('guests', 'GuestsController');

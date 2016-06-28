@@ -896,6 +896,16 @@
 	padding-bottom: 15px;
 	font-weight: 400;
 }
+.rsvp-wrapper h4 {
+	color: #fff;
+	font-size: 24px;
+	text-transform: uppercase;
+	line-height: 1.5;
+	border-bottom: 2px solid #fff;
+	display: inline-block;
+	padding-bottom: 15px;
+	font-weight: 400;
+}
 .rsvp-wrapper .plz-cls {
 	color: #fff;
 	font-size: 16px;
@@ -904,24 +914,41 @@
 	margin-bottom: 20px;
 	font-family: roboto;
 }
+.rsvp-wrapper .notes {
+	color: #fff;
+	font-size: 24px;
+	font-weight: 300;
+	display: block;
+	font-family: roboto;
+}
 .inner-wrapper {
 	overflow: hidden;
 }
 .inner-wrapper .input-box {
 	float: left;
-	width: 50%;
 	margin-bottom: 15px;
 }
 .inner-wrapper .input-box:first-child {
-	padding-right: 10px;
+	padding-right: 2px;
 }
 .inner-wrapper .input-box:last-child {
-	padding-left: 10px;
+	padding-left: 2px;
 }
-.inner-wrapper .input-box  input {
+.inner-wrapper .input-box input {
 	width: 100%;
 	border: 2px solid #ece5ce;
 	background: transparent; /*#e08e79;*/
+	color: #fff;
+	text-align: left;
+	font-family: roboto;
+	font-weight: 400;
+	font-size: 16px;
+	padding-bottom: 5px;
+}
+.inner-wrapper .input-box select {
+	width: 100%;
+	border: 2px solid #ece5ce;
+	background: #e08e79; /*#e08e79;*/
 	color: #fff;
 	text-align: left;
 	font-family: roboto;

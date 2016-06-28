@@ -67,42 +67,13 @@
                           {!! Form::text('guest['.$guest->id.'][name]', $guest->name, ['class' => 'form-control']) !!}
                           {!! $errors->first('guest['.$guest->id.'][name]', '<p class="help-block">:message</p>') !!}
                       </div>
-                      <div class="col-sm-3">
-                          {!! Form::checkbox('guest['.$guest->id.'][is_child]', 'checked', $guest->is_child) !!} Child?
-                      </div>
                   </div>
-
-                <div class="form-group {{ $errors->has('guest['.$guest->id.'][phone]') ? 'has-error' : ''}}">
-                    {!! Form::label('guest['.$guest->id.'][phone]', 'Phone', ['class' => 'col-sm-3 control-label']) !!}
-                    <div class="col-sm-6">
-                        {!! Form::text('guest['.$guest->id.'][phone]', $guest->phone, ['class' => 'form-control']) !!}
-                        {!! $errors->first('guest['.$guest->id.'][phone]', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
 
                 <div class="form-group {{ $errors->has('guest['.$guest->id.'][email]') ? 'has-error' : ''}}">
                     {!! Form::label('guest['.$guest->id.'][email]', 'Email', ['class' => 'col-sm-3 control-label']) !!}
                     <div class="col-sm-6">
                         {!! Form::text('guest['.$guest->id.'][email]', $guest->email, ['class' => 'form-control']) !!}
                         {!! $errors->first('guest['.$guest->id.'][email]', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  {!! Form::label('guest['.$guest->id.'].attending', 'Attending', ['class' => 'col-sm-3 control-label']) !!}
-                  <div class="col-sm-3">
-                      {!! Form::checkbox('guest['.$guest->id.'][is_attending_ceremony]', 'checked', $guest->is_attending_ceremony) !!} Ceremony?
-                  </div>
-                  <div class="col-sm-3">
-                      {!! Form::checkbox('guest['.$guest->id.'][is_attending_reception]', 'checked', $guest->is_attending_reception) !!} Party?
-                  </div>
-                </div>
-
-                <div class="form-group {{ $errors->has('guest['.$guest->id.'][meal_id]') ? 'has-error' : ''}}">
-                    {!! Form::label('guest['.$guest->id.'][meal_id]', 'Meal', ['class' => 'col-sm-3 control-label']) !!}
-                    <div class="col-sm-6">
-                        {!! Form::select('guest['.$guest->id.'][meal_id]', App\Meal::all()->lists('name', 'id'), $guest->meal_id, ['class' => 'form-control', 'placeholder' => 'Select a meal...']) !!}
-                        {!! $errors->first('guest['.$guest->id.'][meal_id]', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 
@@ -117,9 +88,6 @@
                       {!! Form::label('new['.$i.'][name]', 'Name', ['class' => 'col-sm-3 control-label']) !!}
                       <div class="col-sm-6">
                           {!! Form::text('new['.$i.'][name]', NULL, ['class' => 'form-control']) !!}
-                      </div>
-                      <div class="col-sm-3">
-                          {!! Form::checkbox('new['.$i.'][is_child]', 'checked', FALSE) !!} Child?
                       </div>
                   </div>
                 </div>

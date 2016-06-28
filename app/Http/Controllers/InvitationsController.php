@@ -66,7 +66,6 @@ class InvitationsController extends Controller
 
         $guest = new Guest;
         $guest->name = $request->primary;
-        $guest->is_child = 0;
         $guest->invitation_id = $invitation->id;
         $guest->save();
 
@@ -120,7 +119,6 @@ class InvitationsController extends Controller
           'visited_at' => 'date',
           'rsvp_at' => 'date',
           'guest.*.name' => 'string',
-          'guest.*.phone' => 'string',
           'guest.*.email' => 'email',
           'new.*.name' => 'string',
         ]);
@@ -150,22 +148,6 @@ class InvitationsController extends Controller
           $guest = Guest::findOrFail($id);
           $guest->name = $update['name'];
           $guest->email = $update['email'];
-          $guest->phone = $update['phone'];
-          if (isset($update['is_attending_ceremony']) && $update['is_attending_ceremony'] == 'checked') {
-            $guest->is_attending_ceremony = 1;
-          } else {
-            $guest->is_attending_ceremony = 0;
-          }
-          if (isset($update['is_attending_reception']) && $update['is_attending_reception'] == 'checked') {
-            $guest->is_attending_reception = 1;
-          } else {
-            $guest->is_attending_reception = 0;
-          }
-          if (isset($update['is_child']) && $update['is_child'] == 'checked') {
-            $guest->is_child = 1;
-          } else {
-            $guest->is_child = 0;
-          }
           if (isset($update['meal_id']) && !empty($update['meal_id'])) {
             $guest->meal_id = $update['meal_id'];
           }
