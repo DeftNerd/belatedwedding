@@ -21,8 +21,13 @@
                     <td>{{ config('app.url') }}/invite/{{ $invitation->code }}</td>
                     <td>{{ $invitation->guests()->first()->name }}</td>
                     <td>{{ $invitation->guests()->count() }} / {{ $invitation->guests_allowed }}</td>
-                    <td>@if (isset($invitation->rsvp_at)) Responded {{ $invitation->rsvp_at }} @elseif (isset($invitation->visited_at)) {{ $invitation->visited_at }} @else No Response @endif</td>
                     <td>
+                      @if($invitation->is_sent == TRUE) Invites Emailed @else Invites Not Emailed @endif <br />
+                      @if(empty($invitation->rsvp_at)) No response to RSVP @else Responded to RSVP @endif <br />
+                      @if(!empty($invitation->rsvp_at) && $invitation->is_attending == TRUE) Is Attending @endif <br />
+                    </td>
+                    <td>
+                        <a href="{{ url('/invitations/' . $invitation->id . '/send') }}" class="btn btn-info btn-xs" title="Send Invitation"><span class="glyphicon glyphicon-envelope" aria-hidden="true"/></a>
                         <a href="{{ url('/invitations/' . $invitation->id) }}" class="btn btn-success btn-xs" title="View Invitation"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                         <a href="{{ url('/invitations/' . $invitation->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Invitation"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                         {!! Form::open([

@@ -15,7 +15,6 @@ class CreateGuestsTable extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('invitation_id')->unsigned();
-            $table->boolean('is_attending');
             $table->string('name');
             $table->string('email')->nullable();
             $table->integer('meal_id')->nullable()->unsigned();

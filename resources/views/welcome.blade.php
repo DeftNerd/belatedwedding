@@ -244,23 +244,16 @@
                 <!--Attending-section-start-->
                 <section class="attending-class">
                     <div class="container">
-                        <div class="row">
-                            <div class="header-center">
-                                @if (!empty($invitation->rsvp_at))
-                                <h2>You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</h2>
-                                @else
-                                <h2>Are You Attending?</h2>
-                                @endif
-                            </div>
-                        </div>
                         <div class="row text-center">
                             <div class="col-xs-12 col-sm-10 col-sm-push-1">
                                 <div class="rsvp-wrapper">
                                     <form name="form" method="post" action="/invite/{{$invitation->code}}">
-                                    <h3>RSVP</h3>
+                                    
                                     @if (!empty($invitation->rsvp_at))
-                                        <span class="plz-cls">You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</span>
+                                        <h3>You RSVP'd on {{ Carbon::parse($invitation->rsvp_at)->toFormattedDateString() }}</h3>
+                                        <span class="plz-cls">You can change your RSVP if you need to</span>
                                     @else
+                                        <h3>RSVP</h3>
                                         <span class="plz-cls">Please RSVP as soon as possible! </span>
 
                                         <span class="plz-cls">You can invite up to {{ $invitation->guests_allowed }} guests. Leave the names blank if you don't need that many guests. Include an email address to receive updates about the wedding and links to the photos afterwards.</span>
@@ -299,7 +292,7 @@
                                         </div>
                                         @endfor
                                         <span class="notes">If you could wish anything for the couple, what would it be?</span><br />
-                                        <textarea name="wish"></textarea>
+                                        <textarea name="wish">{{ $wish }}</textarea>
                                         <button name="is_attending" value="true">We can attend</button>
                                         <button name="is_attending" value="false">We can't make it</button>
                                     </form>
@@ -487,7 +480,7 @@
                                             <figure>
                                                 <img src="/assets/images/atticus.jpg" alt="">
                                             </figure>
-                                            <p>Apollo insisted that we give him a baby brother and we thought it would be a good time to add another planned child to our lives. Soon after, Atticus was born and Apollo now has a Best Friend Forever and we have another wonderful joyous son.
+                                            <p>Apollo insisted that we give him a baby brother and we thought it would be a good time to add another child to our lives. Soon after, Atticus was born and Apollo now has a Best Friend Forever and we have another wonderful joyous son.
                                             </p>
                                         </article>
                                         <article class="met-section">
@@ -506,7 +499,7 @@
                                                 <span class="css-shape">Aug 2016</span>
                                             </div>
                                             <figure>
-                                                <img src="assets/images/usmap.jpg" alt="">
+                                                <img src="/assets/images/usmap.jpg" alt="">
                                             </figure>
                                             <p>We don't know where we're going yet, but we're going to be moving somewhere else in the US. </p>
                                         </article>
@@ -518,7 +511,7 @@
                                                 <span class="css-shape">Feb 2009</span>
                                             </div>
                                             <figure>
-                                                <img src="assets/images/graduation.jpg" alt="" />
+                                                <img src="/assets/images/graduation.jpg" alt="" />
                                             </figure>
                                             <p>We recognized each other randomly at a store and exchanged numbers. We started dating within weeks.</p>
                                         </article>

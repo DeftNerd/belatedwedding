@@ -84,12 +84,21 @@
               <h2>Available Guest Slots</h2>
               @for ($i = $invitation->guests()->count() + 1; $i <= $invitation->guests_allowed; $i++)
                 <div class="well">
-                  <div class="form-group">
+                    <div class="form-group">
                       {!! Form::label('new['.$i.'][name]', 'Name', ['class' => 'col-sm-3 control-label']) !!}
                       <div class="col-sm-6">
                           {!! Form::text('new['.$i.'][name]', NULL, ['class' => 'form-control']) !!}
                       </div>
-                  </div>
+                    </div>
+
+                    <div class="form-group {{ $errors->has('guest['.$guest->id.'][email]') ? 'has-error' : ''}}">
+                        {!! Form::label('new['.$i.'][email]', 'Email', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="col-sm-6">
+                            {!! Form::text('new['.$i.'][email]', NULL, ['class' => 'form-control']) !!}
+                            {!! $errors->first('new['.$i.'][email]', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+
                 </div>
               @endfor
             @endif

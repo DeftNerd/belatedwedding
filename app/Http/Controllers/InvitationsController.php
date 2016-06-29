@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Guest;
 use App\Invitation;
+use Mail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -160,11 +161,7 @@ class InvitationsController extends Controller
               $guest = new Guest;
               $guest->invitation_id = $invitation->id;
               $guest->name = $new['name'];
-              if (isset($new['is_child'])) {
-                $guest->is_child = 1;
-              } else {
-                $guest->is_child = 0;
-              }
+              $guest->email = $new['email'];
               $guest->save();
             }
           }
@@ -188,6 +185,25 @@ class InvitationsController extends Controller
 
         Session::flash('flash_message', 'Invitation deleted!');
 
+        return redirect('invitations');
+    }
+
+    public function send($id)
+    {
+        $invitation = Invitation::with('guests', 'guests.meal')->findOrFail($id);
+        if ($invitation->is_sent == FALSE) {
+            foreach ($invitation->guests as $guest) {
+                if (!empty($guest->email)) {
+                    Mail::send('emails.invitation', ['guest' => $guest, 'invitation' => $invitation], function ($m) use ($guest) {
+                        $m->from('rsvp@belatedwedding.com', 'Adam and Bethany');
+                        $m->to($guest->email, $guest->name);
+                        $m->subject('You\'ve been invited to Adam & Bethany\'s Wedding!');
+                    });
+                }
+            }
+            $invitation->is_sent = TRUE;
+            $invitation->save();
+        }
         return redirect('invitations');
     }
 }
