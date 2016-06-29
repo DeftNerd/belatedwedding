@@ -62,6 +62,7 @@ class InvitationsController extends Controller
         $invitation = new Invitation;
         $invitation->user_id = Auth::user()->id;
         $invitation->code = substr(md5(microtime()),rand(0,26),4);
+        $invitation->is_sent = 0;
         $invitation->guests_allowed = $request->guests_allowed + 1;
         $invitation->save();
 
