@@ -17,6 +17,8 @@ class CreateInvitationsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('code');
             $table->string('invitation_method')->nullable();
+            $table->boolean('is_sent');
+            $table->boolean('is_attending');
             $table->integer('guests_allowed')->default('1');
             $table->datetime('visited_at')->nullable();
             $table->datetime('rsvp_at')->nullable();

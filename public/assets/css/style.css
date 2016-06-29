@@ -155,7 +155,7 @@
 	font-family: 'Roboto Slab', serif;
 	line-height: 1.3;
 	color: #e08e79;
-	text-transform: capitalize;
+	
 	font-weight: 300;
 	padding-top: 60px;
 	padding-bottom: 15px;
@@ -425,7 +425,7 @@
 }
 .met-section {
 	margin-bottom: 95px;
-	text-transform: capitalize;
+	
 }
 .event-description h3{
 	position: relative;
@@ -527,7 +527,7 @@
 	letter-spacing: 1px;
 }
 .venue-class {
-	text-transform: capitalize;
+	
 	padding-bottom: 15px;
 }
 .event-description > p {
@@ -537,7 +537,7 @@
 }
 .map-class {
 	padding-top: 25px;
-	text-transform: capitalize;
+	
 }
 .day-class:before {
 	content: "";
@@ -729,7 +729,7 @@
 	width: 100%;
 }
 .overlay > span {
-	text-transform: capitalize;
+	
 	text-align: center;
 	font-size: 24px;
 	color: #774f38;
@@ -762,7 +762,7 @@
 .profile-info span {
 	font-size: 12px;
 	display: block;
-	text-transform: capitalize;
+	
 }
 #wedding-item .item, #partner-slider .item {
 	padding: 0 15px;
@@ -1618,7 +1618,7 @@ form placeholder {
 	font-size: 16px;
 	color: #e08e79;
 	margin-right: 5px;
-	text-transform: capitalize;
+	
 }
 .home-agency .sec-block .mail {
 	display: inline-block;
@@ -1630,7 +1630,7 @@ form placeholder {
 	margin: 0 auto;
 }
 .home-agency  .rsvp-wrapper h3 {
-	text-transform: capitalize;
+	
 }
 .home-agency .rsvp-wrapper h3 {
 	border-color: #f1d4af;
@@ -1845,7 +1845,7 @@ form placeholder {
 	font-family: "Roboto Slab", serif;
 	color: #bcbba6;
 	letter-spacing: 0px;
-	text-transform: capitalize;
+	
 	position: relative;
 	padding-bottom: 20px;
 	font-weight: 400;
@@ -2257,7 +2257,7 @@ form placeholder {
 	font-weight: 300;
 	line-height: 1.3;
 	font-family: "Roboto Slab", serif;
-	text-transform: capitalize;
+	
 	padding-top: 10px;
 }
 .bg-color h3 {
@@ -2288,7 +2288,7 @@ form placeholder {
 	line-height: 1.3;
 	color: #bcbba6;
 	font-family: "Roboto Slab", serif;
-	text-transform: capitalize;
+	
 	padding-top: 10px;
 }
 .left-inner-header h4:before {

@@ -14,7 +14,7 @@ class CreateWishesTable extends Migration
     {
         Schema::create('wishes', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('guest_id');
+            $table->integer('invitation_id');
             $table->string('from');
             $table->string('message');
             $table->timestamps();

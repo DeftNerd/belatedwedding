@@ -89,7 +89,7 @@
                             <div class="col-xs-12">
                                 <div class="footer-logo">
                                     <figure>
-                                        <img src="assets/images/footer-img.png" alt="">
+                                        <img src="/assets/images/footer-img.png" alt="">
                                     </figure>
                                     <h4>Adam<span>&amp;</span>Bethany</h4>
                                     <span class="oct-class">Sunday, July 24th, 2016</span>
