@@ -34,7 +34,7 @@ class HomeController extends Controller
                 'wishes' => $wishes, 
                 'meals' => $meals,
                 'invitation' => $invitation,
-                'wish' => $wish->message
+                'wish' => $wish
             ]);
         } else {
             return view('welcome', [
@@ -64,14 +64,13 @@ class HomeController extends Controller
         }
 
         foreach($request->new as $key => $value) {
-            $guest = new Guest;
-            $guest->name = $value['name'];
-            $guest->email = $value['email'];
-            $guest->meal_id = $value['meal_id'];
-            if ($invitation->is_attending == TRUE) {
-                $guest->is_attending = TRUE;
-            }
-            $guest->save();
+	    if (!empty($value['name'])) {
+            	$guest = new Guest;
+            	$guest->name = $value['name'];
+            	$guest->email = $value['email'];
+            	$guest->meal_id = $value['meal_id'];
+            	$guest->save();
+	    }
         }
 
         if (!empty($request->wish)) {

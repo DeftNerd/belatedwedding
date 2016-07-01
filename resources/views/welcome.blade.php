@@ -292,7 +292,7 @@
                                         </div>
                                         @endfor
                                         <span class="notes">If you could wish anything for the couple, what would it be?</span><br />
-                                        <textarea name="wish">{{ $wish }}</textarea>
+                                        <textarea name="wish">{{ $wish->message }}</textarea>
                                         <button name="is_attending" value="true">We can attend</button>
                                         <button name="is_attending" value="false">We can't make it</button>
                                     </form>

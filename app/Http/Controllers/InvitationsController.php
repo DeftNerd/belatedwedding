@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Guest;
 use App\Invitation;
+use App\Wish;
 use Mail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -62,6 +63,7 @@ class InvitationsController extends Controller
         $invitation = new Invitation;
         $invitation->user_id = Auth::user()->id;
         $invitation->code = substr(md5(microtime()),rand(0,26),4);
+	$invitation->is_attending = 0;
         $invitation->is_sent = 0;
         $invitation->guests_allowed = $request->guests_allowed + 1;
         $invitation->save();
@@ -183,6 +185,8 @@ class InvitationsController extends Controller
     public function destroy($id)
     {
         Invitation::destroy($id);
+	Guest::where('invitation_id', $id)->delete();
+	Wish::where('invitation_id', $id)->delete();
 
         Session::flash('flash_message', 'Invitation deleted!');
 
