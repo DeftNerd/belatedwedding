@@ -256,7 +256,7 @@
                                         <h3>RSVP</h3>
                                         <span class="plz-cls">Please RSVP as soon as possible! </span>
 
-                                        <span class="plz-cls">You can invite up to {{ $invitation->guests_allowed }} guests. Leave the names blank if you don't need that many guests. Include an email address to receive updates about the wedding and links to the photos afterwards.</span>
+                                        <span class="plz-cls">Your invitation is for {{ $invitation->guests_allowed }} guests. Leave the names blank if you don't need that many. Include an email address to receive updates about the wedding and links to the photos afterwards.</span>
                                     @endif
                                     <div class="inner-wrapper">
 
@@ -292,7 +292,7 @@
                                         </div>
                                         @endfor
                                         <span class="notes">If you could wish anything for the couple, what would it be?</span><br />
-                                        <textarea name="wish">{{ $wish->message }}</textarea>
+                                        <textarea name="wish">@if (!empty($wish)) {{ $wish->message }} @endif </textarea>
                                         <button name="is_attending" value="true">We can attend</button>
                                         <button name="is_attending" value="false">We can't make it</button>
                                     </form>

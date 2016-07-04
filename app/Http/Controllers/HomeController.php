@@ -48,10 +48,10 @@ class HomeController extends Controller
         //dd($request->all());
         $invitation = Invitation::where('code', $code)->first();
         $invitation->rsvp_at = Carbon::now();
-        if ($request->is_attending == TRUE) {
-            $invitation->is_attending = TRUE;
+        if ($request->is_attending == 1) {
+            $invitation->is_attending = 1;
         } else {
-            $invitation->is_attending = FALSE;
+            $invitation->is_attending = 0;
         }
         $invitation->save();
 

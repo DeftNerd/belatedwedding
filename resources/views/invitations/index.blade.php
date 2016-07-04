@@ -24,7 +24,8 @@
                     <td>
                       @if($invitation->is_sent == TRUE) Invites Emailed @else Invites Not Emailed @endif <br />
                       @if(empty($invitation->rsvp_at)) No response to RSVP @else Responded to RSVP @endif <br />
-                      @if(!empty($invitation->rsvp_at) && $invitation->is_attending == TRUE) Is Attending @endif <br />
+                      @if(!empty($invitation->rsvp_at) && $invitation->is_attending == 1) Is Attending <br />@endif
+		      @if(!empty($invitation->rsvp_at) && $invitation->is_attending == 0) Is Not Attending <br />@endif
                     </td>
                     <td>
                         <a href="{{ url('/invitations/' . $invitation->id . '/send') }}" class="btn btn-info btn-xs" title="Send Invitation"><span class="glyphicon glyphicon-envelope" aria-hidden="true"/></a>

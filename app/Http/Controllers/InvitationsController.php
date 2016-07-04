@@ -57,7 +57,7 @@ class InvitationsController extends Controller
     {
         $this->validate($request, [
           'primary' => 'required|string',
-          'guests_allowed' => 'numeric|between:1,8',
+          'guests_allowed' => 'numeric|between:0,8',
         ]);
 
         $invitation = new Invitation;

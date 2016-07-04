@@ -102,7 +102,16 @@
                     <div class="container">
                         <div class="row">
                             <div class="left-footer">
-                                <span class="psd-temp-class">Crafted with <i class="fa fa-heart"> </i> by <a class="macro-class" href="https://deftnerd.com">DeftNerd.com</a></span>
+         <p class="text-center">
+           &copy; 2016 <a href="https://techendeavors.com">TechEndeavors Startup Studio</a>.
+           Powered by Laravel <?php $laravel = app(); echo $laravel::VERSION; ?>.
+           @if (Auth::guest())
+             (<a href="/login">Login</a>)
+           @else
+             (<a href="/logout">Logout</a>)
+           @endif
+         </p>
+
                             </div>
                             <div class="right-footer">
                                 <a href="#" class="circle-class"><i class="fa fa-facebook"> </i></a>
